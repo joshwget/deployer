@@ -1,5 +1,2 @@
 nginx:
-  image: fedora
-  command:
-  - sleep
-  - "9999999"
+  image: nginx
