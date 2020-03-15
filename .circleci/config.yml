@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run: sudo pip install awscli
-      - run: aws s3 sync docker-compose.yml s3://jc-deployer/docker-compose.yml
+      - run: aws s3 cp docker-compose.yml s3://jc-deployer/docker-compose.yml
 
 workflows:
   version: 2
