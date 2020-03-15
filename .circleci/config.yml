@@ -1,0 +1,20 @@
+version: 2
+
+jobs:
+  test:
+    docker:
+      - image: circleci/golang:1.13
+    steps:
+      - checkout
+      - run: docker-compose --version
+
+workflows:
+  version: 2
+  test_release:
+    jobs:
+      - release-controller-master:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
