@@ -2,4 +2,4 @@ nginx:
   image: fedora
   command:
   - sleep
-  - 9999999
+  - "9999999"
