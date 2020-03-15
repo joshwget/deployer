@@ -1,18 +1,33 @@
 version: 2
 
 jobs:
-  deploy:
+  validate:
     docker:
-      - image: circleci/golang:1.13
+      - image: cimg/base:2020.01
     steps:
       - checkout
-      - run: docker-compose --version
+      - run: docker-compose config
+  deploy:
+    docker:
+      - image: cimg/python:2.7-jessie
+    steps:
+      - checkout
+      - run: sudo pip install awscli
+      - run: aws s3 sync docker-compose.yml s3://jc-deployer/docker-compose.yml
 
 workflows:
   version: 2
   test_release:
     jobs:
+      - validate:
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - deploy:
+          requires:
+            - validate
           filters:
             branches:
               only: master
