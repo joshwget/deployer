@@ -9,7 +9,7 @@ jobs:
       - run: docker-compose config
   deploy:
     docker:
-      - image: cimg/python:2.7-jessie
+      - image: circleci/python:2.7-jessie
     steps:
       - checkout
       - run: sudo pip install awscli
