@@ -1,4 +1,5 @@
 nginx:
-  image: nginx
-  environment:
-    A: B
+  image: fedora
+  command:
+  - sleep
+  - 9999999
