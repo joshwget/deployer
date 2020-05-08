@@ -13,6 +13,6 @@ url=$(eval echo "${source}")
 while true
 do
 	compose=$(curl --fail ${url})
-	echo "${compose}" | docker-compose -f - up -d
+	echo "${compose}" | docker-compose -f - up -d --remove-orphans
 	sleep 60
 done
