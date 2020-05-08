@@ -1,17 +1,17 @@
 #!/bin/bash
 set -e
 
-root="/etc/treb"
-
-env=$(cat "${root}/env")
-export $(echo "${env}" | xargs)
-
-group=$(cat "${root}/group")
-source=$(cat "${root}/source")
-url=$(eval echo "${source}")
-
 while true
 do
+	root="/etc/treb"
+
+	env=$(cat "${root}/env")
+	export $(echo "${env}" | xargs)
+
+	group=$(cat "${root}/group")
+	source=$(cat "${root}/source")
+	url=$(eval echo "${source}")
+	
 	compose=$(curl --fail ${url})
 	echo "${compose}" | docker-compose -f - up -d --remove-orphans
 	sleep 60
