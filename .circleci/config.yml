@@ -6,14 +6,14 @@ jobs:
       - image: cimg/base:2020.01
     steps:
       - checkout
-      - run: docker-compose config
+      - run: ./ci/validate
   deploy:
     docker:
       - image: circleci/python:2.7-jessie
     steps:
       - checkout
       - run: sudo pip install awscli
-      - run: aws s3 cp docker-compose.yml s3://jc-deployer/docker-compose.yml
+      - run: aws s3 sync ./deployments s3://jc-deployer/
 
 workflows:
   version: 2

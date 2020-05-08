@@ -6,7 +6,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=/usr/local/bin/updater
+ExecStart=/usr/local/bin/treb
 
 [Install]
 WantedBy=multi-user.target
